@@ -2,7 +2,7 @@ from setuptools import setup
 from setuptools import find_packages
 
 setup(name='tax_bpjs',
-      version='1.0.3',
+      version='1.0.4',
       description='Easy Tax & BPJS Calculation using Python!',
       url='https://github.com/vousmeevoyez/tax_bpjs',
       author='Kelvin Desman',

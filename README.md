@@ -6,7 +6,8 @@ Features:
 	- Tax Calculation
 
 # Installation
-pip install tax_bpjs
+https://pypi.org/project/tax-bpjs/
+pip install tax-bpjs
 
 # Quick Start
 check example.py
