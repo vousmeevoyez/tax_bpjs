@@ -1,0 +1,72 @@
+{
+    "case": [
+    {
+        "input":
+        {
+
+            "base_salary": 4000000,
+            "fixed_allowances":
+            {
+                "other": 0
+            },
+            "non_fixed_allowances":
+            {
+                "living": 0
+            },
+            "overtime_allowances": 0,
+            "bonus_allowances": 0,
+            "start_work_date": "01/01/2018",
+            "end_work_date": "01/02/2018",
+            "tax_method": "GROSS",
+            "npwp_status": true,
+            "marital_status": "MARRIED",
+            "dependents": 0,
+            "is_salary_allowances": false,
+            "accident_insurance_status": false,
+            "pension_insurance_status": false,
+            "old_age_insurance_status": false,
+            "death_insurance_status": false,
+            "health_insurance_status": false,
+            "industry_risk_rate": 0.24
+        },
+        "output":
+        {
+            "monthly_tax": 29375
+        }
+    }],
+    "configuration":
+    {
+        "health_max_fee": 8000000,
+        "pension_max_fee": 8094000,
+        "old_pension_max_fee": 7703500,
+        "individual_health_insurance_rate": 0.01,
+        "company_health_insurance_rate": 0.04,
+        "death_insurance_rate": 0.003,
+        "individual_old_age_insurance_rate": 0.02,
+        "company_old_age_insurance_rate": 0.037,
+        "individual_pension_insurance_rate": 0.01,
+        "company_pension_insurance_rate": 0.02,
+        "max_occupation_support": 6000000,
+        "occupation_support_rate": 0.05,
+        "tax_exemption_grade":
+        {
+            "SINGLE": 54000000,
+            "MARRIED": 58500000,
+            "MARRIED_CI": 112500000,
+            "PERSON": 4500000
+        },
+        "pph_grade_rate":
+        {
+            "first": 0.05,
+            "second": 0.15,
+            "third": 0.25,
+            "fourth": 0.30
+        },
+        "pph_grade_range":
+        {
+            "first": 50000000,
+            "second": 250000000,
+            "third": 500000000
+        }
+    }
+}

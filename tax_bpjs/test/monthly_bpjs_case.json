@@ -1,0 +1,222 @@
+{
+    "case": [
+        {
+            "input":
+            {
+                "base_salary": 8000000,
+                "fixed_allowances":
+                {
+                    "other": 0
+                },
+                "non_fixed_allowances":
+                {
+                    "living": 0
+                },
+                "is_salary_allowances": true,
+                "accident_insurance_status": true,
+                "pension_insurance_status": true,
+                "old_age_insurance_status": true,
+                "death_insurance_status": true,
+                "health_insurance_status": true,
+                "industry_risk_rate": 0.24
+            },
+            "output":
+            {
+                "health_insurance":
+                {
+                    "company": 320000,
+                    "individual": 80000
+                },
+                "old_age_insurance":
+                {
+                    "company": 296000,
+                    "individual": 160000
+                },
+                "pension_insurance":
+                {
+                    "company": 160000,
+                    "individual": 80000
+                },
+                "accident_insurance": 19200,
+                "death_insurance": 24000
+            }
+        },
+        {
+            "input":
+            {
+                "base_salary": 8500000,
+                "fixed_allowances":
+                {
+                    "other": 0
+                },
+                "non_fixed_allowances":
+                {
+                    "living": 0
+                },
+                "is_salary_allowances": true,
+                "accident_insurance_status": true,
+                "pension_insurance_status": true,
+                "old_age_insurance_status": true,
+                "death_insurance_status": true,
+                "health_insurance_status": true,
+                "industry_risk_rate": 0.24
+            },
+            "output":
+            {
+                "health_insurance":
+                {
+                    "company": 320000,
+                    "individual": 80000
+                },
+                "old_age_insurance":
+                {
+                    "company": 314500,
+                    "individual": 170000
+                },
+                "pension_insurance":
+                {
+                    "company": 161880,
+                    "individual": 80940
+                },
+                "accident_insurance": 20400,
+                "death_insurance": 25500
+            }
+        },
+        {
+            "input":
+            {
+                "base_salary": 4500000,
+                "fixed_allowances":
+                {
+                    "other": 0
+                },
+                "non_fixed_allowances":
+                {
+                    "living": 0
+                },
+                "is_salary_allowances": true,
+                "accident_insurance_status": true,
+                "pension_insurance_status": true,
+                "old_age_insurance_status": true,
+                "death_insurance_status": true,
+                "health_insurance_status": true,
+                "industry_risk_rate": 0.24
+            },
+            "output":
+            {
+                "health_insurance":
+                {
+                    "company": 180000,
+                    "individual": 45000
+                },
+                "old_age_insurance":
+                {
+                    "company": 166500,
+                    "individual": 90000
+                },
+                "pension_insurance":
+                {
+                    "company": 90000,
+                    "individual": 45000
+                },
+                "accident_insurance": 10800,
+                "death_insurance": 13500
+            }
+        },
+        {
+            "input":
+            {
+                "base_salary": 3700000,
+                "fixed_allowances":
+                {
+                    "other": 0
+                },
+                "non_fixed_allowances":
+                {
+                    "living": 0
+                },
+                "is_salary_allowances": true,
+                "accident_insurance_status": true,
+                "pension_insurance_status": true,
+                "old_age_insurance_status": true,
+                "death_insurance_status": true,
+                "health_insurance_status": true,
+                "industry_risk_rate": 0.24
+            },
+            "output":
+            {
+                "health_insurance":
+                {
+                    "company": 148000,
+                    "individual": 37000
+                },
+                "old_age_insurance":
+                {
+                    "company": 136900,
+                    "individual": 74000
+                },
+                "pension_insurance":
+                {
+                    "company": 74000,
+                    "individual": 37000
+                },
+                "accident_insurance": 8880,
+                "death_insurance": 11100
+            }
+        },
+        {
+            "input":
+            {
+                "base_salary": 6000000,
+                "fixed_allowances":
+                {
+                    "other": 0
+                },
+                "non_fixed_allowances":
+                {
+                    "living": 0
+                },
+                "is_salary_allowances": true,
+                "accident_insurance_status": true,
+                "pension_insurance_status": true,
+                "old_age_insurance_status": true,
+                "death_insurance_status": true,
+                "health_insurance_status": true,
+                "industry_risk_rate": 0.24
+            },
+            "output":
+            {
+                "health_insurance":
+                {
+                    "company": 240000,
+                    "individual": 60000
+                },
+                "old_age_insurance":
+                {
+                    "company": 222000,
+                    "individual": 120000
+                },
+                "pension_insurance":
+                {
+                    "company": 120000,
+                    "individual": 60000
+                },
+                "accident_insurance": 14400,
+                "death_insurance": 18000
+            }
+        }
+    ],
+    "configuration":
+    {
+        "health_max_fee": 8000000,
+        "pension_max_fee": 8094000,
+        "old_pension_max_fee": 7703500,
+        "individual_health_insurance_rate": 0.01,
+        "company_health_insurance_rate": 0.04,
+        "death_insurance_rate": 0.003,
+        "individual_old_age_insurance_rate": 0.02,
+        "company_old_age_insurance_rate": 0.037,
+        "individual_pension_insurance_rate": 0.01,
+        "company_pension_insurance_rate": 0.02
+    }
+}
