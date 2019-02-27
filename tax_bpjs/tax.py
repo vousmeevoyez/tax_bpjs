@@ -239,11 +239,12 @@ class Tax(Bpjs):
         # start date , start month , start year
         start = datetime.strptime(start_work_date, '%d/%m/%Y').date()
         end = datetime.strptime(end_work_date, '%d/%m/%Y').date()
-        """exception To-Do
-        if start > end: Throw exception
-        """
         date_diff = relativedelta.relativedelta(start, end)
         months = date_diff.months
+        years = date_diff.years
+        if abs(years) > 0:
+            raise ValueError("Only can calculate in a year period")
+
         start_year = start.year
         return abs(months) + 1, abs(start_year)
     #end def

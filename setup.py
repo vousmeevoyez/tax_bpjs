@@ -2,7 +2,7 @@ from setuptools import setup
 from setuptools import find_packages
 
 setup(name='tax_bpjs',
-      version='1.0',
+      version='1.0.3',
       description='Easy Tax & BPJS Calculation using Python!',
       url='https://github.com/vousmeevoyez/tax_bpjs',
       author='Kelvin Desman',
@@ -15,4 +15,5 @@ setup(name='tax_bpjs',
           "License :: OSI Approved :: MIT License",
           "Operating System :: OS Independent",
       ],
+      install_requires=["python-dateutil"],
       python_requires='>=3')

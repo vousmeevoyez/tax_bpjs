@@ -176,6 +176,17 @@ class TestTax(unittest.TestCase):
         expected_result = 10,2018
         self.assertEqual(result, expected_result)
 
+        result = self.tax.working_months("01/01/2018", "01/12/2018")
+        expected_result = 12,2018
+        self.assertEqual(result, expected_result)
+
+        with self.assertRaises(ValueError):
+            result = self.tax.working_months("01/02/2018", "01/02/2020")
+
+        result = self.tax.working_months("01/11/2018", "01/12/2018")
+        expected_result = 2,2018
+        self.assertEqual(result, expected_result)
+
     def test_calc_non_tax_charge(self):
         """ calculate non tax charge"""
         result = self.tax._non_tax_charge(True, 35346000)
