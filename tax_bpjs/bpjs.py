@@ -3,10 +3,9 @@
 """
 class Bpjs:
     """ BPJS Class """
-
     def __init__(self, employee_information, configuration):
         """
-        Parameters:
+        Args:
             employee_information (dictionary):
                 base_salary -- (Integer) Gaji Pokok
                 fixed_allowances -- (Integer) Tunjangan Tetap
@@ -23,11 +22,17 @@ class Bpjs:
                 Enrollment Status
                 industry_risk_rate -- (Float) Industry Risk Rate (ex : 0.24)
 
-            configuration -- (optional)(dictionary):
-                pension_max_fee -- (Integer) Jumlah Maksimal BPJS
+            configuration -- (dictionary):
+                pension_max_fee -- (Integer) Jumlah Maksimal BPJS Pensiun
                 health_max_fee -- (Integer) Jumlah Maksimal BPJS
-                pension_max_fee -- (Integer) Jumlah Maksimal BPJS
-                pension_max_fee -- (Integer) Jumlah Maksimal BPJS
+                old_pension_max_fee -- (Integer) Jumlah Maksimal BPJS
+                individual_health_insurance_rate -- (Integer) Jumlah Maksimal BPJS
+                company_health_insurance_rate -- (Integer) Jumlah Maksimal BPJS
+                death_insurance_rate -- (Integer) Jumlah Maksimal BPJS
+                individual_old_age_insurance_rate -- (Integer) Jumlah Maksimal BPJS
+                company_old_age_insurance_rate -- (Integer) Jumlah Maksimal BPJS
+                individual_pension_insurance_rate -- (Integer) Jumlah Maksimal BPJS
+                company_pension_insurance_rate -- (Integer) Jumlah Maksimal BPJS
         """
         self.base_salary               = employee_information["base_salary"]
         self.fixed_allowances          = employee_information["fixed_allowances"]
@@ -63,7 +68,8 @@ class Bpjs:
         configuration["company_pension_insurance_rate"]
     #end def
 
-    def summarize(self, allowances):
+    @staticmethod
+    def summarize(allowances):
         """
             Function to summarize allowances
 
@@ -98,7 +104,7 @@ class Bpjs:
 
         if total_salary <= self.health_max_fee:
             individual_health_insurance = total_salary \
-            *  self.individual_health_insurance_rate
+            * self.individual_health_insurance_rate
         else:
             individual_health_insurance = self.health_max_fee\
             * self.individual_health_insurance_rate
@@ -115,7 +121,7 @@ class Bpjs:
 
             Returns:
                 company_health_insurance (int) : the amount of \
-                        bpjs health insurance that person have to pay monthly
+                bpjs health insurance that person have to pay monthly
         """
         company_health_insurance = 0
 
@@ -132,7 +138,7 @@ class Bpjs:
     @staticmethod
     def _accident_insurance(total_salary, industry_risk_rate):
         """
-            Function to calculate bpjs work + death insurance
+            Function to calculate bpjs accident insurance
 
             Args:
                 total_salary (int): The amount of base salary that person receive each month.
@@ -140,10 +146,9 @@ class Bpjs:
                         based on industry that person work on
 
             Returns:
-                accident_insurance(int) : the amount of bpjs work\
+                accident_insurance(int) : the amount of bpjs accident\
                         insurance that person have to pay monthly
         """
-
         industry_type_rate = industry_risk_rate / 100
 
         accident_insurance_rate = industry_type_rate
@@ -154,7 +159,7 @@ class Bpjs:
 
     def _death_insurance(self, total_salary):
         """
-            Function to calculate death insurance
+            Function to calculate BPJS death insurance
 
             Args:
                 total_salary (int): The amount of base salary that person receive each month.
@@ -173,7 +178,7 @@ class Bpjs:
 
             Returns:
                 company_old_age_insurance(int) : \
-                        amount of individual person old age insurance fee.
+                        amount of company person old age insurance fee.
         """
         return self.company_old_age_insurance_rate * total_salary
     #end def
@@ -200,7 +205,8 @@ class Bpjs:
                 base_salary (int): The amount of base salary that person receive each month.
 
             Returns:
-                individual_pension_insurance(int) : amount of person tht contribution fee.
+                individual_pension_insurance(int) : amount of individual
+                pension insurance.
         """
         individual_pension_insurance = 0
 
@@ -224,13 +230,14 @@ class Bpjs:
 
     def _company_pension_insurance(self, total_salary, month=None, year=None):
         """
-            Function to calculate person pension contribution fee
+            Function to calculate company pension contribution fee
 
             Args:
                 base_salary (int): The amount of base salary that person receive each month.
 
             Returns:
-                company_pension_insurance (int) : amount of person tht contribution fee.
+                company_pension_insurance (int) : amount of person company
+                penson insurance.
         """
         company_pension_insurance = 0
 
@@ -253,7 +260,16 @@ class Bpjs:
     #end def
 
     def monthly_fee(self):
-        """ calculate monthly bpjs """
+        """
+            calculate person bpjs monthly fee
+
+            return:
+                old_age_insurance
+                pension_insurance
+                health_insurance
+                death_insurance
+                accident_insurance
+        """
         total_salary = self.base_salary
         if self.is_salary_allowances is True:
             fixed_allowances = self.summarize( self.fixed_allowances )
@@ -325,6 +341,12 @@ class Bpjs:
     def annual_fee(self, working_months, year, with_bpjs=True):
         """
             calculate annual bpjs fee
+
+            args:
+                working_months
+                year
+                with_bpjs
+
             parameter:
                 working_months -- working_months
                 year -- year
@@ -347,7 +369,7 @@ class Bpjs:
         annual_i_health_insurance  = 0
         annual_death_insurance     = 0
         annual_accident_insurance  = 0
-        
+
         if with_bpjs is True:
         # only calculate bpjs if is enabled and automatically set everthing to zero when is false
             start_month = 1

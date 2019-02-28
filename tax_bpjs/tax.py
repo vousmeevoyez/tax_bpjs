@@ -1,5 +1,5 @@
 """
-    Tax Calculation modules
+    Tax Calculation
 """
 from datetime import datetime
 from dateutil import relativedelta
@@ -235,7 +235,15 @@ class Tax(Bpjs):
 
     @staticmethod
     def working_months(start_work_date, end_work_date):
-        """ working motnh """
+        """
+            calculate how many working month
+            Args:
+                start_work_date : dd/mm/yyyy
+                end_work_date : dd/mm/yyyy
+
+            Returns:
+                working_months : working_months
+        """
         # start date , start month , start year
         start = datetime.strptime(start_work_date, '%d/%m/%Y').date()
         end = datetime.strptime(end_work_date, '%d/%m/%Y').date()
@@ -250,7 +258,24 @@ class Tax(Bpjs):
     #end def
 
     def total_year_income(self, base_salary, overtime_allowances, non_fixed_allowances, bonus_allowances, bpjs_calculation, working_months):
-        """ total year income"""
+        """
+            calculate total year income
+            Args:
+                base_salary -- base_salary
+                overtime_allowances -- overtime_allowances
+                non_fixed_allowances -- non_fixed_allowances
+                bonus_allowances -- bonus_allowances
+                bpjs_calculation -- bpjs_calculation
+                working_months -- working_months
+
+            Return:
+                annual_salary
+                annual_allowances
+                annual_bpjs_work
+                annual_bpjs_health
+                bonus
+                annual_bruto_income
+        """
         annual_salary    = base_salary * working_months # monthly salary * working months
         annual_allowances= overtime_allowances + \
         self.summarize(non_fixed_allowances) # monthly allowances
@@ -268,12 +293,24 @@ class Tax(Bpjs):
             "annual_bruto_income": annual_salary + annual_allowances \
                                    + annual_work + annual_health + bonus
         }
-
         return result
     #end def
 
     def annual_net_income(self, annual_bruto_income, bonus, bpjs_calculation):
-        """ annual net income """
+        """
+            calculate annual net income
+            Args:
+                annual_bruto_income
+                bonus
+                bpjs_calculation
+
+            returns:
+                occupation_support
+                thr_occupation_support
+                bpjs_pension_insurance
+                bpjs_old_age_insurance
+                annual_net_income
+        """
         occupation_support     = self._occupation_support(annual_bruto_income-bonus)
         thr_occupation_support = self._occupation_support(bonus)
 
@@ -294,8 +331,24 @@ class Tax(Bpjs):
     #end def
 
     def annual_tax(self, total_salary, overtime_allowances, non_fixed_allowances, bonus_allowances):
-        """ calculate annual tax """
+        """
+            calculate annual tax
 
+            Args:
+                total_salary
+                overtime_allowances
+                non_fixed_allowances
+                bonus_allowances
+
+            Returns:
+                working_months
+                total_income_result,
+                net_income_result
+                annual_taxable_income
+                tax_exemption
+                annual_tax
+                annual_bpjs
+        """
         #calculate working months and working year
         working_months, working_year = self.working_months(self.start_work_date, self.end_work_date)
 
@@ -311,11 +364,9 @@ class Tax(Bpjs):
         net_income_result = self.annual_net_income(total_income_result["annual_bruto_income"],
                                                    bonus_allowances,
                                                    annual_bpjs)
-
         # annual taxable income
         annual_taxable_income = self._taxable_income_yearly(net_income_result["annual_net_income"],
-                                                           self.marital_status, self.dependents)
-
+                                                            self.marital_status, self.dependents)
         # tax exemption
         tax_exemption = self._classify_tax_exemption( self.marital_status, self.dependents )
 
@@ -346,10 +397,10 @@ class Tax(Bpjs):
         # calculate monthly tax
         if first_annual_tax > 0:
             monthly_tax = self._monthly(first_annual_tax,
-                                       annual_tax_without_bonus["working_months"])
+                                        annual_tax_without_bonus["working_months"])
         else:
             monthly_tax = self._monthly(annual_tax_without_bonus["annual_tax"],
-                                       annual_tax_without_bonus["working_months"])
+                                        annual_tax_without_bonus["working_months"])
         #end if
 
         calculated_tax = annual_tax_without_bonus
