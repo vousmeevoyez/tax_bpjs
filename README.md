@@ -1,23 +1,23 @@
-## tax_bpjs
+# tax_bpjs
 Easy Tax & BPJS Calculation according to Indonesia Govermennt Regulation using Python!:)
 
 Features:
 	- BPJS Calculation
 	- Tax Calculation
 
-# Installation
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
+## Installation
+Use the package manager [pip](https://pip.pypa.io/en/stable/) to install tax_bpjs.
 ```bash
 pip install tax_bpjs
 ```
 
-# Usage
+## Usage
 ```python
 from tax_bpjs.bpjs import Bpjs
 from tax_bpjs.tax import Tax
 ```
 
-# Quick Start
+## Quick Start
 check example.py
 
 ## Contributing
